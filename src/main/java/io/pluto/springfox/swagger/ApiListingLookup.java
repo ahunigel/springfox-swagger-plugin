@@ -34,7 +34,7 @@ public class ApiListingLookup implements ApiListingBuilderPlugin {
     Optional<? extends Class<?>> controller = apiListingContext.getResourceGroup().getControllerClass();
     if (controller.isPresent()) {
       Optional<Api> apiAnnotation = fromNullable(findAnnotation(controller.get(), Api.class));
-      String value = emptyToNull(apiAnnotation.transform(api -> api.value()).orNull());
+      String value = emptyToNull(apiAnnotation.transform(Api::value).orNull());
 
       Set<String> tagSet = apiAnnotation.transform(tags())
           .or(Sets.newTreeSet())
@@ -47,6 +47,10 @@ public class ApiListingLookup implements ApiListingBuilderPlugin {
           .description(descriptions.resolve(value))
           .tagNames(tagSet);
     }
+  }
+
+  private Function<Api, String> valueExtractor() {
+    return api -> api.value();
   }
 
   private Function<Api, Set<String>> tags() {
