@@ -4,6 +4,9 @@ import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.collect.Sets;
 import io.swagger.annotations.Api;
+import org.springframework.context.annotation.Primary;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.ApiListingBuilderPlugin;
 import springfox.documentation.spi.service.contexts.ApiListingContext;
@@ -19,8 +22,12 @@ import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newTreeSet;
 import static org.springframework.core.annotation.AnnotationUtils.findAnnotation;
 import static springfox.documentation.service.Tags.emptyTags;
+import static springfox.documentation.swagger.common.SwaggerPluginSupport.SWAGGER_PLUGIN_ORDER;
 import static springfox.documentation.swagger.common.SwaggerPluginSupport.pluginDoesApply;
 
+@Component
+@Primary
+@Order(value = SWAGGER_PLUGIN_ORDER)
 public class ApiListingLookup implements ApiListingBuilderPlugin {
 
   private final DescriptionResolver descriptions;
