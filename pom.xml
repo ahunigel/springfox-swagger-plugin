@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.pluto</groupId>
   <artifactId>springfox-swagger-plugin</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
 
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -24,6 +22,7 @@
 
   <scm>
     <developerConnection>scm:git:git@10.161.92.205:pluto/springfox-swagger-plugin.git</developerConnection>
+    <tag>springfox-swagger-plugin-1.0</tag>
   </scm>
 
   <profiles>
