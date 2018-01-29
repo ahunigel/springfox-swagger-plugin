@@ -22,6 +22,10 @@
     </dependency>
   </dependencies>
 
+  <scm>
+    <developerConnection>scm:git:git@10.161.92.205:pluto/springfox-swagger-plugin.git</developerConnection>
+  </scm>
+
   <profiles>
     <profile>
       <id>emerson</id>
