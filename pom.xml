@@ -4,7 +4,7 @@
 
   <groupId>io.pluto</groupId>
   <artifactId>springfox-swagger-plugin</artifactId>
-  <version>1.0</version>
+  <version>1.1-SNAPSHOT</version>
 
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -22,7 +22,7 @@
 
   <scm>
     <developerConnection>scm:git:git@10.161.92.205:pluto/springfox-swagger-plugin.git</developerConnection>
-    <tag>springfox-swagger-plugin-1.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <profiles>
