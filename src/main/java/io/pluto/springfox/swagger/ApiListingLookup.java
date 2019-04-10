@@ -27,10 +27,13 @@ import static springfox.documentation.service.Tags.emptyTags;
 import static springfox.documentation.swagger.common.SwaggerPluginSupport.SWAGGER_PLUGIN_ORDER;
 import static springfox.documentation.swagger.common.SwaggerPluginSupport.pluginDoesApply;
 
+@Component
+@Order(value = SWAGGER_PLUGIN_ORDER + 1000)
 public class ApiListingLookup implements ApiListingBuilderPlugin {
 
   private final DescriptionResolver descriptions;
 
+  @Autowired
   public ApiListingLookup(DescriptionResolver descriptionResolver) {
     this.descriptions = descriptionResolver;
   }
@@ -51,7 +54,7 @@ public class ApiListingLookup implements ApiListingBuilderPlugin {
       }
       ApiListingBuilder builder = apiListingContext.apiListingBuilder()
           .description(descriptions.resolve(value));
-      setTagNames(builder, tagSet);
+      //setTagNames(builder, tagSet);
     }
   }
 
