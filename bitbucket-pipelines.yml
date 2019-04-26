@@ -1,0 +1,31 @@
+# This is a sample build configuration for Java (Maven).
+# Check our guides at https://confluence.atlassian.com/x/zd-5Mw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: maven:3.3.9
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - maven
+        script: # Modify the commands below to build your repository.
+          - curl --user "${BB_AUTH_STRING}" -L -O "https://api.bitbucket.org/2.0/repositories/${BITBUCKET_REPO_OWNER}/${WAGON_GIT_MAVE_REPO}/downloads/settings.xml"
+          - ls -l
+          - mvn help:active-profiles
+          - git --version
+          - git config --global user.email $WAGON_GIT_USER_EMAIL
+          - git config --global user.name $WAGON_GIT_USER_NAME
+          - mvn -s settings.xml -B clean verify package deploy # -B batch mode makes Maven less verbose
+        artifacts:
+          - "*/*.jar"
+    - step:
+        name: Deploy to test
+        deployment: test   # can be test, staging or production
+        # trigger: manual  # uncomment to make manual deployment
+        script:
+          - echo "Deploying to test environment"
+          - export JAR_FILE=`ls */*.jar`
+          - printenv
+          - for i in ${JAR_FILE}; do curl -X POST --user "${BB_AUTH_STRING}" "https://api.bitbucket.org/2.0/repositories/${BITBUCKET_REPO_OWNER}/${BITBUCKET_REPO_SLUG}/downloads" --form files=@"${i}"; done;
