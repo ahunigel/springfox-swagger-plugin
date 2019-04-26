@@ -11,7 +11,7 @@ pipelines:
         caches:
           - maven
         script: # Modify the commands below to build your repository.
-          - curl --user "${BB_AUTH_STRING}" -L -O "https://api.bitbucket.org/2.0/repositories/${BITBUCKET_REPO_OWNER}/${WAGON_GIT_MAVE_REPO}/downloads/settings.xml"
+          - curl --user "${BB_AUTH_STRING}" -L -O "https://api.bitbucket.org/2.0/repositories/${WAGON_GIT_MAVE_REPO_OWNER}/${WAGON_GIT_MAVE_REPO}/downloads/settings.xml"
           - ls -l
           - mvn help:active-profiles
           - git --version
